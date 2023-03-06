@@ -1,0 +1,56 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * netlifytrigger plugin for Craft CMS 4.x
+ *
+ * Craft Netlify Trigger adds a way for editors to trigger a rebuild of a Netlify
+ * static site when using Craft as a Headless CMS.
+ *
+ * @author    Michael Pelletier
+ * @copyright Copyright (c) 2023 Michael Pelletier
+ * @package   Netlifytrigger
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% macro configWarning(setting, file) -%}
+    {{ "This is being overridden by the {setting} config setting."|t({
+        setting: '<a href="https://github.com/upstatement/craft-netlify-trigger/blob/main/README.md#config-settings-'~setting~'" target="_blank">'~setting~'</a>'
+    })|raw }}
+{%- endmacro %}
+
+{% from _self import configWarning %}
+
+<p>{{ "You can enter your Netlify Webhook URLs below (obtained by going to your site in Netlify and navigating to Settings -> Build & Deploy -> Build Hooks). If you leave either of these fields blank, that button will ot display on the deploy page."|t }}</p>
+
+{% set configOverride = 'productionWebhook' in overrides %}
+{{ forms.textField({
+    label: "Production Webhook"|t,
+    id: 'productionWebhook',
+    name: 'productionWebhook',
+    instructions: "Enter the Netlify webhook for the production environment."|t,
+    value: settings.productionWebhook,
+    autofocus: true,
+    first: true,
+    errors: '',
+    warning: configOverride ? configWarning('productionWebhook'),
+    disabled: configOverride,
+    readonly: configOverride,
+})}}
+
+{% set configOverride = 'stagingWebhook' in overrides %}
+{{ forms.textField({
+    label: "Staging Webhook"|t,
+    id: 'stagingWebhook',
+    name: 'stagingWebhook',
+    instructions: "Enter the Netlify webhook for the staging environment."|t,
+    value: settings.stagingWebhook,
+    autofocus: true,
+    first: true,
+    errors: '',
+    warning: configOverride ? configWarning('stagingWebhook'),
+    disabled: configOverride,
+    readonly: configOverride,
+})}}

@@ -1,0 +1,48 @@
+/**
+ * netlifytrigger plugin for Craft CMS
+ *
+ * netlifytrigger CSS
+ *
+ * @author    Michael Pelletier
+ * @copyright Copyright (c) 2023 Michael Pelletier
+ * @package   netlifytrigger
+ * @since     1.0.0
+ */
+
+#netlify-trigger {
+
+}
+
+#netlify-trigger #deploy-buttons {
+  display: flex;
+  margin-top: 24px;
+}
+
+#netlify-trigger button {
+  background: #FFF;
+  border: 1px solid #000;
+  border-radius: 24px;
+  color: #000;
+  display: block;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 8px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.25s ease-in-out;
+}
+
+#netlify-trigger button#deploy-production {
+  background: #000;
+  border-color: #FFF;
+  color: #FFF;
+}
+
+#netlify-trigger button:hover {
+  filter: invert(1);
+}
+
+
+

@@ -1,0 +1,29 @@
+
+{% extends "_layouts/cp" %}
+
+{% do view.registerAssetBundle("upstatement\\netlifytrigger\\assetbundles\\netlifytrigger\\NetlifyTriggerAsset") %}
+
+{% set stagingUrl = craft.netlifyTrigger.settings.stagingWebhook %}
+{% set productionUrl = craft.netlifyTrigger.settings.productionWebhook %}
+
+{% set title = craft.netlifyTrigger.name|t %}
+
+{% set content %}
+  <div id="netlify-trigger">
+    <div id="netlify-trigger-flash-message"></div>
+
+    {{ 'Use the buttons below to trigger the site to update with the latest content.'|t }}
+
+    <div id="deploy-buttons">
+      {% if stagingUrl %}
+        <button id="deploy-staging" data-path="{{ stagingUrl }}">{{ 'Deploy Staging'|t }}</button>
+      {% endif %}
+      {% if productionUrl %}
+        <button id="deploy-production" data-path="{{ productionUrl }}">{{ 'Deploy Production'|t }}</button>
+      {% endif %}
+      {% if productionUrl == '' and stagingUrl == '' %}
+        {{ 'You do not have any webhook urls set. Go to Settings -> Netlify Trigger to add them.'|t }}
+      {% endif %}
+    </div>
+  </div>
+{% endset %}
