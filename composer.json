@@ -2,7 +2,6 @@
     "name": "upstatement/craft-netlify-trigger",
     "description": "Craft Netlify Trigger adds a way for editors to trigger a rebuild of a Netlify static site when using Craft as a Headless CMS.",
     "type": "craft-plugin",
-    "version": "1.0.0",
     "keywords": [
         "craft",
         "cms",
